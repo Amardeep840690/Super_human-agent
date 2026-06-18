@@ -3,7 +3,7 @@ import { auth } from "@/server/auth";
 import { getIntegrationStatus } from "@/server/services/integration-status.service";
 import { DashboardCenter } from "@/components/dashboard-center";
 
-export default async function DashboardPage() {
+export default async function IntegrationsPage() {
   const session = await auth();
 
   if (!session?.user) {
@@ -14,7 +14,7 @@ export default async function DashboardPage() {
 
   return (
     <DashboardCenter
-      mode="dashboard"
+      mode="integrations"
       user={session.user}
       status={status}
     />

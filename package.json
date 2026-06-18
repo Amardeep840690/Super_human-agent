@@ -13,13 +13,18 @@
     "@corsair-dev/cli": "^0.1.19",
     "@corsair-dev/gmail": "^0.1.4",
     "@corsair-dev/googlecalendar": "^0.1.3",
+    "@corsair-dev/mcp": "^0.1.22",
+    "@openai/agents": "^0.11.6",
     "corsair": "^0.1.76",
     "dotenv": "^17.4.2",
     "drizzle-orm": "^0.45.2",
     "next": "16.2.9",
+    "next-auth": "^5.0.0-beta.30",
+    "openai": "^6.42.0",
     "pg": "^8.21.0",
     "react": "19.2.4",
-    "react-dom": "19.2.4"
+    "react-dom": "19.2.4",
+    "zod": "^4.4.3"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",

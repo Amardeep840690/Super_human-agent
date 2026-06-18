@@ -1,11 +1,7 @@
-import Image from "next/image";
-import Chat from "./chat/page";
+import { redirect } from "next/navigation";
+import { auth } from "@/server/auth";
 
-export default function Home() {
-  return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      Super human Agent
-      <Chat/>
-    </div>
-  );
+export default async function Home() {
+  const session = await auth();
+  redirect(session?.user ? "/dashboard" : "/login");
 }
