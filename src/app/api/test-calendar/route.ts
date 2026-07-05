@@ -1,5 +1,7 @@
 import { auth } from "@/server/auth";
 import { getTenantCorsair } from "@/server/corsair/client";
+import { db } from "@/server/db";
+import { corsairEntities } from "@/server/db/schema";
 
 export async function GET() {
   const session = await auth();
@@ -16,24 +18,36 @@ export async function GET() {
       session.user.id
     );
 
-    const event =
-      await tenant.googlecalendar.api.events.create({
-        event: {
-          summary: "Hackathon Planning",
+    const entities = await db
+  .select()
+  .from(corsairEntities)
+  .limit(5);
 
-          start: {
-            dateTime:
-              "2026-06-18T17:00:00+05:30",
-          },
+// console.log(entities);
 
-          end: {
-            dateTime:
-              "2026-06-18T18:00:00+05:30",
-          },
-        },
-      });
+//     const event = await tenant.gmail.db.messages.search({
+//   data: {
+//     id: { equals: "19ef724724299fae" },
+//   },
+// });
+  // console.log("google = ", event);
+      // await tenant.googlecalendar.api.events.create({
+      //   event: {
+      //     summary: "Hackathon Planning",
 
-    return Response.json(event);
+      //     start: {
+      //       dateTime:
+      //         "2026-06-18T17:00:00+05:30",
+      //     },
+
+      //     end: {
+      //       dateTime:
+      //         "2026-06-18T18:00:00+05:30",
+      //     },
+      //   },
+      // });
+
+    return Response.json(entities);
   } catch (error) {
     console.error(error);
 

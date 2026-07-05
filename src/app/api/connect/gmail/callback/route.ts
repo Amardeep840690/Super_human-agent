@@ -18,7 +18,7 @@ export async function GET(request: Request) {
 
   if (!code || !state) {
     return NextResponse.redirect(
-      new URL("/integrations?error=gmail_oauth_missing", url.origin),
+      new URL("/settings?error=gmail_oauth_missing", url.origin),
     );
   }
 
@@ -32,12 +32,12 @@ export async function GET(request: Request) {
 
     if (result.tenantId !== session.user.id) {
       return NextResponse.redirect(
-        new URL("/integrations?error=gmail_oauth_mismatch", url.origin),
+        new URL("/settings?error=gmail_oauth_mismatch", url.origin),
       );
     }
 
     return NextResponse.redirect(
-      new URL("/integrations?connected=gmail", url.origin),
+      new URL("/settings?connected=gmail", url.origin),
     );
   } catch (error) {
     const message =
@@ -46,7 +46,7 @@ export async function GET(request: Request) {
         : "Unable to complete Gmail connect";
 
     return NextResponse.redirect(
-      new URL(`/integrations?error=${encodeURIComponent(message)}`, url.origin),
+      new URL(`/settings?error=${encodeURIComponent(message)}`, url.origin),
     );
   }
 }

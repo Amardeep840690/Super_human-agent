@@ -1,4 +1,9 @@
-import { pgTable, text, jsonb, timestamp } from "drizzle-orm/pg-core";
+import {
+  jsonb,
+  pgTable,
+  text,
+  timestamp,
+} from "drizzle-orm/pg-core";
 
 export const corsairIntegrations = pgTable("corsair_integrations", {
   id: text("id").primaryKey(),

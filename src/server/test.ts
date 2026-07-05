@@ -2,7 +2,7 @@ import "dotenv/config";
 import { corsair } from "./corsair/corsair";
 
 const main = async () => {
-  const tanent = corsair.withTenant("user_123");
+  const tanent = corsair.withTenant("a781bef8-a125-45d8-9f48-ef640a392b76");
   // console.log(tanent)
 
   //   const result = await tanent.gmail.db.threads.search({
@@ -28,9 +28,9 @@ const main = async () => {
   //     },
   //   });
 
-  const calendar = await tanent.googlecalendar.db.events.search({
-    data: {},
+  const google = await tanent.gmail.api.threads.list({
+    // data: {},
   });
-  console.log("calendar = ", calendar);
+  console.log("google = ", google);
 };
 main();

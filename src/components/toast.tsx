@@ -20,11 +20,11 @@ const ToastContext = createContext<ToastContextValue | null>(null);
 function getVariantStyles(variant: ToastVariant) {
   switch (variant) {
     case "success":
-      return "border-emerald-400/20 bg-emerald-400/10 text-emerald-50";
+      return "border-[color:var(--border)] border-l-4 border-l-emerald-500 bg-[var(--card)] text-[var(--foreground)]";
     case "error":
-      return "border-rose-400/20 bg-rose-400/10 text-rose-50";
+      return "border-[color:var(--border)] border-l-4 border-l-rose-500 bg-[var(--card)] text-[var(--foreground)]";
     default:
-      return "border-sky-400/20 bg-sky-400/10 text-sky-50";
+      return "border-[color:var(--border)] border-l-4 border-l-[var(--accent)] bg-[var(--card)] text-[var(--foreground)]";
   }
 }
 
@@ -48,19 +48,19 @@ export function ToastProvider({ children }: { children: ReactNode }) {
         {toasts.map((toast) => (
           <div
             key={toast.id}
-            className={`pointer-events-auto rounded-2xl border px-4 py-3 shadow-[0_20px_60px_-20px_rgba(15,23,42,0.9)] backdrop-blur-xl ${getVariantStyles(toast.variant)}`}
+            className={`pointer-events-auto rounded-2xl px-4 py-3 shadow-[0_20px_60px_-24px_rgba(var(--shadow),0.18)] backdrop-blur-xl transition duration-200 ${getVariantStyles(toast.variant)}`}
           >
             <div className="flex items-start justify-between gap-3">
               <div className="space-y-1">
                 <p className="text-sm font-semibold">{toast.title}</p>
                 {toast.description ? (
-                  <p className="text-sm/5 text-white/75">{toast.description}</p>
+                  <p className="text-sm/5 text-[var(--muted)]">{toast.description}</p>
                 ) : null}
               </div>
               <button
                 type="button"
                 onClick={() => removeToast(toast.id)}
-                className="rounded-full px-2 py-1 text-xs text-white/70 transition hover:bg-white/10 hover:text-white"
+                className="rounded-full px-2 py-1 text-xs text-[var(--muted)] transition hover:bg-[var(--hover)] hover:text-[var(--foreground)]"
               >
                 Dismiss
               </button>
